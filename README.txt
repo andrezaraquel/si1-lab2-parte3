@@ -1,1 +1,1 @@
-Repositório criado para a parte 3 do LAB 2 da Disciplina SI 1, UFCG
+Repositório modificado para o LAB 3 da disciplina de SI1, UFCG
