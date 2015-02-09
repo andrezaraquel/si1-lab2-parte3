@@ -45,8 +45,9 @@ public class Serie implements Comparable<Serie> {
 	}
 
 	public void mudaStatus() {
-		if(this.status) this.status = false;
-		else this.status = true;
+		if(this.status){
+			this.status = false;
+		} else this.status = true;
 	}
 	
 	public boolean hasTemporadaAssistidaCompleta() {
@@ -86,7 +87,9 @@ public class Serie implements Comparable<Serie> {
 	public boolean isTemporadaNaoAssistida(int temporada) {
 		List<Episodio> temp = getEpisodios(temporada);
 		for (int i = 0; i < temp.size(); i++) {
-			if(temp.get(i).isAssistido()) return false;
+			if(temp.get(i).isAssistido()){
+				return false;
+			}
 		}
 		return true;
 	}
