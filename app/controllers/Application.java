@@ -26,7 +26,9 @@ public class Application extends Controller {
 			
 			if(series.get(i).isAssistindo()) {
 				seriesAssistindo.add(series.get(i));
-			} else seriesAssistir.add(series.get(i));
+			} else {
+				seriesAssistir.add(series.get(i));
+			}
 		}
 		Collections.sort(seriesAssistir);
 		Collections.sort(seriesAssistindo);

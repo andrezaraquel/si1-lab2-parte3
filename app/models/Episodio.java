@@ -70,7 +70,9 @@ public class Episodio implements Comparable<Episodio> {
 	public void mudaStatus() {
 		if(this.status) {
 			this.status = false;
-		} else this.status = true;
+		} else {
+			this.status = true;
+		}
 	}
 
 	public String getNome() {
