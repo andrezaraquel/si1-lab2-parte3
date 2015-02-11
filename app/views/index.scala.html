@@ -81,17 +81,27 @@
 						    }
 						    @if(serie.hasTemporadaAssistidaIncompleta) {
 							    <div class="panel panel-warning">
+									  <form method="post" action="muda_recomendacao">
+							    		<input type="hidden" name="id" value="@serie.getId" >
+									    <label>
+									      <input class="recomendacao" type="radio" name="recomendacao" value="ultimo" @if(serie.ehEstrategiaDefault()){ checked } > Receber recomendação da próxima série depois da última assistida
+									    </label>
+									    <br/>
+									    <label>
+									      <input class="recomendacao" type="radio" name="recomendacao" value="antigo"  @if(!serie.ehEstrategiaDefault()){ checked } > Receber recomendação da última não assistida
+									    </label>
+									</form>
 							    	<div class="panel-heading">Temporadas Assistidas Incompletas:</div>
-							    	<div class="panel-body">
+							    	<div class="panel-body" id="temporadas">
 									    @for(temporada <- serie.getTemporadas) {
 									      	@if(serie.isTemporadaAssistidaIncompleta(temporada)) {
 										    	<a class="btn btn-primary btn-xs btn-temporada" href="#serie-@serie.getId" 
 										      	onclick="$('.temporada').hide();
 										      	$('#serie-@serie.getId-t-@temporada').toggle(500);" title="Ver episódios da temporada @temporada">@temporada</a>
-										      	Próximo episódio: 
+										      	Próximo episódio: <span>
 										      		@if(serie.getProximoEpisodio(temporada) != null) {
 										      			@serie.getProximoEpisodio(temporada).getNome
-										      		}
+										      		}</span>
 										      		<br />
 									    	}
 									    }

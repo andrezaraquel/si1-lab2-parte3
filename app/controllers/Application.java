@@ -5,7 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 import models.Episodio;
+import models.EstrategiaRecomendacao;
 import models.GenericDAO;
+import models.RecomendaMaisAntigo;
+import models.RecomendaProximoNaoAssistido;
 import models.Serie;
 import play.data.DynamicForm;
 import play.data.Form;
@@ -60,4 +63,33 @@ public class Application extends Controller {
         return redirect("/#serie-" + idSerie);
     }
 
+	@Transactional
+	public static Result mudarRecomendacao() {
+		DynamicForm requestData = Form.form().bindFromRequest();
+		Long id = Long.parseLong(requestData.get("id"));
+		
+		Serie serie = dao.findByEntityId(Serie.class, id);
+
+		EstrategiaRecomendacao estrategia;
+		
+		switch (requestData.get("recomendacao")) {
+		case "antigo":
+			estrategia = new RecomendaMaisAntigo();
+			break;
+		default:
+			estrategia = new RecomendaProximoNaoAssistido();
+		}
+		
+		serie.setEstrategia(estrategia);
+
+		String json = "{\"id\": " + id + ", \"temporadas\": [";
+		for (Integer temporada : serie.getTemporadas()) {
+			if (serie.isTemporadaAssistidaIncompleta(temporada)) {
+				json += "\"" + serie.getProximoEpisodio(temporada).getNome() + "\",";
+			}
+		}
+		json = json.substring(0, json.length() - 1) + "]}";
+        return ok(json);
+	}
+	
 }
