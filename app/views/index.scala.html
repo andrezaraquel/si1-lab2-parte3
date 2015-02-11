@@ -92,7 +92,7 @@
 									    </label>
 									</form>
 							    	<div class="panel-heading">Temporadas Assistidas Incompletas:</div>
-							    	<div class="panel-body" id="temporadas">
+							    	<div class="panel-body" id="temporadas@serie.getId">
 									    @for(temporada <- serie.getTemporadas) {
 									      	@if(serie.isTemporadaAssistidaIncompleta(temporada)) {
 										    	<a class="btn btn-primary btn-xs btn-temporada" href="#serie-@serie.getId" 

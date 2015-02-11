@@ -83,12 +83,21 @@ public class Application extends Controller {
 		serie.setEstrategia(estrategia);
 
 		String json = "{\"id\": " + id + ", \"temporadas\": [";
+		boolean temEpisodio = false;
 		for (Integer temporada : serie.getTemporadas()) {
 			if (serie.isTemporadaAssistidaIncompleta(temporada)) {
-				json += "\"" + serie.getProximoEpisodio(temporada).getNome() + "\",";
+				Episodio episodio = serie.getProximoEpisodio(temporada);
+				if (episodio != null) {
+					temEpisodio = true;
+					json += "{\"temporada\": " + temporada + ", \"nome\": \"" + episodio.getNome() + "\"},";
+				}
 			}
 		}
-		json = json.substring(0, json.length() - 1) + "]}";
+		if (temEpisodio) {
+			json = json.substring(0, json.length() - 1) + "]}";
+		} else {
+			json += "]}";
+		} 
         return ok(json);
 	}
 	
