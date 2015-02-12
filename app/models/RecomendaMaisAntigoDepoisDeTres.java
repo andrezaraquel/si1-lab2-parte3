@@ -12,15 +12,16 @@ public class RecomendaMaisAntigoDepoisDeTres extends EstrategiaRecomendacao {
 	
 	@Override
 	public Episodio getProximoEpisodio(int temporada, Serie contexto) {
-		List<Episodio> eps = contexto.getEpisodios(temporada);
+		List<Episodio> eps = contexto.getEpisodios(temporada);		
 		int lastIndex = eps.size()-1;
-		for (int i = 0; i <= lastIndex; i++){		
-			if (!eps.get(i).isAssistido()){
-				if(i != lastIndex && !possuiTresOuMaisAssistidos(eps.subList(i+1, -1))){
-					return eps.get(i);
-				}				
+		
+		for (int i = 0; i <= lastIndex; i++){			
+			if (!eps.get(i).isAssistido()){				
+				if (i == lastIndex || (i != lastIndex && !possuiTresOuMaisAssistidos(eps.subList(i+1, lastIndex)))){	
+					return eps.get(i);					
+				} 				
 			}
-		}
+		}		
 		return null;
 	}
 
@@ -32,6 +33,7 @@ public class RecomendaMaisAntigoDepoisDeTres extends EstrategiaRecomendacao {
 			}
 			
 			if (count >= 3){
+				
 				return true;
 			}
 		}		

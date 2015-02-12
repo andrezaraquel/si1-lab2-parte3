@@ -20,8 +20,10 @@ public class RecomendaMaisAntigoDepoisDeTresTest {
 		serie.setEstrategia(new RecomendaMaisAntigoDepoisDeTres());
 		assertTrue(serie.ehEstrategiaMaisAntigaDepoisDeTres());
 		
+				
 		serie.getEpisodios(3).get(1).mudaStatus();
 		serie.getEpisodios(3).get(2).mudaStatus();
+
 		assertEquals(serie.getProximoEpisodio(3), serie.getEpisodios(3).get(0));
 		serie.getEpisodios(3).get(3).mudaStatus();
 		assertEquals(serie.getProximoEpisodio(3), serie.getEpisodios(3).get(4));
