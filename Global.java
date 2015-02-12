@@ -5,7 +5,6 @@ import java.util.List;
 import au.com.bytecode.opencsv.CSVReader;
 import models.Episodio;
 import models.GenericDAO;
-import models.RecomendaProximoNaoAssistido;
 import models.Serie;
 import play.*;
 import play.db.jpa.JPA;
@@ -32,7 +31,7 @@ public class Global extends GlobalSettings {
 			        while ((nextLine = reader.readNext()) != null) {
 			        	
 			            // nextLine[] is an array of values from the line
-			        	Serie serie  = new Serie(nextLine[0], new RecomendaProximoNaoAssistido());
+			        	Serie serie  = new Serie(nextLine[0]);
 			        	int i = series.indexOf(serie);
 			        	if(i >= 0) {
 			        		dao.persist(series.get(i).addEpisodio(nextLine[3], Integer.parseInt(nextLine[2]), Integer.parseInt(nextLine[1])));

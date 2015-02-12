@@ -84,11 +84,15 @@
 									  <form method="post" action="muda_recomendacao">
 							    		<input type="hidden" name="id" value="@serie.getId" >
 									    <label>
-									      <input class="recomendacao" type="radio" name="recomendacao" value="ultimo" @if(serie.ehEstrategiaDefault()){ checked } > Receber recomendação da próxima série depois da última assistida
+									      <input class="recomendacao" type="radio" name="recomendacao" value="ultimo" @if(serie.ehEstrategiaDefault()){ checked } > Receber recomendação do próximo episódio depois do último assistido
 									    </label>
 									    <br/>
 									    <label>
-									      <input class="recomendacao" type="radio" name="recomendacao" value="antigo"  @if(!serie.ehEstrategiaDefault()){ checked } > Receber recomendação da última não assistida
+									      <input class="recomendacao" type="radio" name="recomendacao" value="antigo"  @if(serie.ehEstrategiaMaisAntigo()){ checked } > Receber recomendação do último episódio não assistido
+									    </label>
+									    <br/>
+									    <label>
+									      <input class="recomendacao" type="radio" name="recomendacao" value="antigoDepoisDeTres" @if(serie.ehEstrategiaMaisAntigaDepoisDeTres()){ checked } > Receber recomendação do último não assistido, mas não depois do qual eu já tenha visto 3 ou mais episódios
 									    </label>
 									</form>
 							    	<div class="panel-heading">Temporadas Assistidas Incompletas:</div>

@@ -8,6 +8,7 @@ import models.Episodio;
 import models.EstrategiaRecomendacao;
 import models.GenericDAO;
 import models.RecomendaMaisAntigo;
+import models.RecomendaMaisAntigoDepoisDeTres;
 import models.RecomendaProximoNaoAssistido;
 import models.Serie;
 import play.data.DynamicForm;
@@ -75,6 +76,9 @@ public class Application extends Controller {
 		switch (requestData.get("recomendacao")) {
 		case "antigo":
 			estrategia = new RecomendaMaisAntigo();
+			break;
+		case "antigoDepoisDeTres":
+			estrategia = new RecomendaMaisAntigoDepoisDeTres();
 			break;
 		default:
 			estrategia = new RecomendaProximoNaoAssistido();

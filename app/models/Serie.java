@@ -39,6 +39,10 @@ public class Serie implements Comparable<Serie> {
 		this.episodios = new ArrayList<Episodio>();
 		this.estrategiaDeRecomendacao = estrategia;
 	}
+	
+	public Serie(String nome){
+		this(nome, new RecomendaProximoNaoAssistido());
+	}
 		
 	public Serie() {
 	}
@@ -121,11 +125,19 @@ public class Serie implements Comparable<Serie> {
 	}
 	
 	public Episodio getProximoEpisodio(int temporada) {
-			return estrategiaDeRecomendacao.getProximoEpisodio(temporada, this);
+			return this.estrategiaDeRecomendacao.getProximoEpisodio(temporada, this);
 	}
 	
-	public boolean ehEstrategiaDefault(){
-		return estrategiaDeRecomendacao instanceof RecomendaProximoNaoAssistido;
+	public boolean ehEstrategiaDefault() {
+		return this.estrategiaDeRecomendacao instanceof RecomendaProximoNaoAssistido;
+	}
+	
+	public boolean ehEstrategiaMaisAntigo() {
+		return this.estrategiaDeRecomendacao instanceof RecomendaMaisAntigo;
+	}
+	
+	public boolean ehEstrategiaMaisAntigaDepoisDeTres() {
+		return this.estrategiaDeRecomendacao instanceof RecomendaMaisAntigoDepoisDeTres;
 	}
 	
 	public List<Integer> getTemporadas() {
