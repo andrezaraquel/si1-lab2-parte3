@@ -1,14 +1,13 @@
 import static org.junit.Assert.*;
 
-import models.RecomendaMaisAntigoDepoisDeTres;
 import models.Serie;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class RecomendaMaisAntigoDepoisDeTresTest {
+public class RecomendaProximoNaoAssistidoTest {
 
-	private Serie serie1;
+private Serie serie1;
 	
 	@Before
 	public void criaObjetos(){
@@ -24,18 +23,14 @@ public class RecomendaMaisAntigoDepoisDeTresTest {
 		serie1.addEpisodio("Episodio 4", 4, 3);
 		serie1.addEpisodio("Episodio 5", 5, 3);
 		
-		assertTrue(serie1.ehEstrategiaDefault());		
-		serie1.setEstrategia(new RecomendaMaisAntigoDepoisDeTres());
-		assertTrue(serie1.ehEstrategiaMaisAntigaDepoisDeTres());
-		
+		assertTrue(serie1.ehEstrategiaDefault());	
 				
 		serie1.getEpisodios(3).get(1).mudaStatus();
 		serie1.getEpisodios(3).get(2).mudaStatus();
 
-		assertEquals(serie1.getProximoEpisodio(3), serie1.getEpisodios(3).get(0));
+		assertEquals(serie1.getProximoEpisodio(3), serie1.getEpisodios(3).get(3));
 		serie1.getEpisodios(3).get(3).mudaStatus();
 		assertEquals(serie1.getProximoEpisodio(3), serie1.getEpisodios(3).get(4));
 		
 	}
-
 }
