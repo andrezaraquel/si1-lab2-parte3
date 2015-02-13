@@ -17,7 +17,7 @@ public class RecomendaMaisAntigoDepoisDeTres extends EstrategiaRecomendacao {
 		
 		for (int i = 0; i <= lastIndex; i++){			
 			if (!eps.get(i).isAssistido()){				
-				if (i == lastIndex || (i != lastIndex && !possuiTresOuMaisAssistidos(eps.subList(i+1, lastIndex)))){	
+				if (i == lastIndex || (i != lastIndex && !possuiTresOuMaisAssistidos(eps.subList(i+1, lastIndex+1)))){	
 					return eps.get(i);					
 				} 				
 			}
