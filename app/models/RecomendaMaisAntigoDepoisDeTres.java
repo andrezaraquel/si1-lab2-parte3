@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 @Entity
 public class RecomendaMaisAntigoDepoisDeTres extends EstrategiaRecomendacao {
 
+	private static final int MAX_EPISODIOS_ASSISTIDOS = 3;
+	
 	public RecomendaMaisAntigoDepoisDeTres() {		
 	}
 	
@@ -32,7 +34,7 @@ public class RecomendaMaisAntigoDepoisDeTres extends EstrategiaRecomendacao {
 				count++;				
 			}
 			
-			if (count >= 3){
+			if (count >= MAX_EPISODIOS_ASSISTIDOS){
 				
 				return true;
 			}
